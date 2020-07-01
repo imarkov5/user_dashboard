@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <a class="navbar-brand" href="#">Test App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Dashboard<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+            <a class="btn btn-sm btn-light text-dark" href="#"
+                    role="button">Log off</a>
+        </div>
+    </nav>
+    <div class="row ml-5 my-5">
+        <div class="col-10"><h1>Manage Users</h1></div>
+        <div class="col-2"><a class="btn btn-primary btn-lg mr-5" href="#" role="button">Add new</a></div>
+        
+    </div>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">email</th>
+            <th scope="col">created_at</th>
+            <th scope="col">user_level</th>
+            <th scope="col">actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark Brown</td>
+            <td>mark@email.com</td>
+            <td>Dec 24th 2012</td>
+            <td>admin</td>
+            <td><span><a href="">edit</a> | <a href="">remove</a></span></td>
+          </tr>          
+        </tbody>
+      </table>
+</body>
+</html>
