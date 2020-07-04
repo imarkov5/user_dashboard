@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <a class="navbar-brand" href="/">Test App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    {%if user.user_level == 9%}
+                    <a class="nav-link" href="/users/admin">Dashboard<span class="sr-only">(current)</span></a>
+                    {%else%}
+                    <a class="nav-link" href="/users/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+                    {%endif%}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/profile">Profile</a>
+                </li>
+            </ul>
+            <a class="btn btn-sm btn-light text-dark" href="/logoff"
+                    role="button">Log off</a>
+        </div>
+    </nav>
+    <div class="col-10"><h1>Edit Profile</h1></div>
+        {% if messages %}
+        <ul class="messages text-danger">    
+            {% for message in messages %}    
+                <li>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+    <div class="container row mx-auto">
+        <fieldset class="col ml-5 border">
+            <legend class="w-50">Edit Information</legend>
+            <form action="/users/profile" method="POST">
+                {%csrf_token%}
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label">Email Address</label>
+                    <div class="col-sm-8">
+                        <input type="email" name="email" class="form-control" id="inputEmail3" value="{{user.email}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">First Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="first_name" class="form-control" id="" value="{{user.first_name}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Last Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="last_name" class="form-control" id="" value="{{user.last_name}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-success float-right">Save</button>
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+        <fieldset class="col ml-5 border">
+            <legend class="w-50">Change Password</legend>
+            <form action="/users/profile_password" method="POST">
+                {%csrf_token%}
+                <input type="hidden" name="user_id" value="{{user.id}}">
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-4 col-form-label">Confirm Password</label>
+                    <div class="col-sm-8">
+                        <input type="password" name="conf_password" class="form-control" id="inputPassword3" placeholder="Confirm Password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-success float-right">Update Password</button>
+                    </div>
+                </div>
+            </form>
+        </fieldset>        
+    </div>
+    <fieldset class="container w-50 my-4 border">
+        <legend class="w-25">Edit Description</legend>
+        <form action="/users/description" method="POST">
+            {%csrf_token%}
+            <input type="hidden" name="user_id" value="{{user.id}}">
+            <textarea class="border mx-5 my-4" name="description" id="" cols="85" rows="10">{{user.description}}</textarea>
+            <div class="form-group row">
+                <div class="col-sm-11">
+                    <button type="submit" class="btn btn-success float-right">Save</button>
+                </div>
+            </div>
+        </form>
+    </fieldset>   
+</body>
+</html>

@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-        <a class="navbar-brand" href="#">Test App</a>
+        <a class="navbar-brand" href="/">Test App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,11 +16,16 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li> 
             </ul>
-            <a class="btn btn-sm btn-light text-dark" href="#"
+            {%if logged_user%}
+            <a class="btn btn-sm btn-light text-dark" href="/logoff"
+                    role="button">Log Off</a>
+            {%else%}
+            <a class="btn btn-sm btn-light text-dark" href="/login"
                     role="button">Sign In</a>
+            {%endif%}
         </div>
     </nav>
     <div class="wrapper container mt-5">
@@ -28,7 +33,13 @@
             <div class="jumbotron">
                 <h1 class="display-4">Welcome to the Test!</h1>
                 <p class="lead">We're going to build a cool application using a MVC framework! This application was built with the Village88 folks!</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+                {% if logged_user and logged_user.user_level == 9 %}
+                <a class="btn btn-primary btn-lg" href="/users/admin" role="button">Start</a>
+                {% elif logged_user and logged_user.user_level == 1 %}
+                <a class="btn btn-primary btn-lg" href="/users/dashboard" role="button">Start</a>
+                {%else%}
+                <a class="btn btn-primary btn-lg" href="/login" role="button">Start</a>
+                {%endif%}
             </div>
         </div>
     </div>
